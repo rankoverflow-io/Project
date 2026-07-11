@@ -9,15 +9,15 @@
 
   <style>
 :root {
-  --bg: #0a0b0f;
-  --bg-alt: #0e1015;
-  --panel: #14161e;
-  --panel-2: #191c26;
-  --border: rgba(255,255,255,0.08);
-  --border-strong: rgba(255,255,255,0.16);
-  --text: #edeef3;
-  --text-dim: #9a9dac;
-  --text-faint: #62667a;
+  --bg: #ffffff;
+  --bg-alt: #f4f5f7;
+  --panel: #fafafa;
+  --panel-2: #eceff1;
+  --border: rgba(17,17,17,0.08);
+  --border-strong: rgba(17,17,17,0.14);
+  --text: #111111;
+  --text-dim: #4b5563;
+  --text-faint: #6b7280;
   --gold: #f0b93e;
   --gold-soft: rgba(240,185,62,0.14);
   --teal: #34d1b8;
@@ -43,7 +43,7 @@ h3 { font-size: clamp(1.15rem, 2vw, 1.4rem); }
 p { line-height: 1.7; color: var(--text-dim); }
 
 /* ── NAV ── */
-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: var(--nav-h); display: flex; align-items: center; padding: 0 5%; background: rgba(10,11,15,0.78); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); transition: border-color .3s; }
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: var(--nav-h); display: flex; align-items: center; padding: 0 5%; background: rgba(255,255,255,0.94); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); transition: border-color .3s; }
 nav.scrolled { border-bottom-color: var(--border-strong); }
 .nav-logo { font-family: var(--font-mono); font-weight: 600; font-size: 1.05rem; color: var(--text); text-decoration: none; display: flex; align-items: center; gap: 9px; letter-spacing: -0.02em; }
 .nav-logo-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); display: inline-block; box-shadow: 0 0 10px var(--gold); }
@@ -126,7 +126,7 @@ footer { background: var(--bg-alt); border-top: 1px solid var(--border); padding
 .visual-label { font-family: var(--font-mono); font-size: .72rem; color: var(--text-faint); text-transform: uppercase; letter-spacing: .07em; margin-bottom: 1.5rem; }
 
 .bar-row { display: flex; justify-content: space-between; font-size: .85rem; margin-bottom: .4rem; color: var(--text-dim); }
-.bar-track { height: 6px; background: rgba(255,255,255,0.06); border-radius: 100px; overflow: hidden; }
+.bar-track { height: 6px; background: rgba(17,17,17,0.07); border-radius: 100px; overflow: hidden; }
 .bar-fill { height: 100%; border-radius: 100px; }
 
 .issue-callout { margin-top: .5rem; padding: 1rem; background: rgba(255,110,94,0.08); border-radius: 12px; border: 1px solid rgba(255,110,94,0.2); }
@@ -135,7 +135,7 @@ footer { background: var(--bg-alt); border-top: 1px solid var(--border); padding
 
 .timeline-row { display: flex; gap: 1rem; align-items: center; font-size: .85rem; }
 .timeline-row .month { width: 70px; color: var(--text-faint); flex-shrink: 0; font-family: var(--font-mono); font-size: .78rem; }
-.timeline-row .track { flex: 1; height: 6px; border-radius: 100px; background: rgba(255,255,255,0.06); }
+.timeline-row .track { flex: 1; height: 6px; border-radius: 100px; background: rgba(17,17,17,0.07); }
 .timeline-row .fill { height: 100%; border-radius: 100px; }
 .timeline-note { margin-top: 1.2rem; font-size: .8rem; color: var(--text-faint); font-family: var(--font-mono); }
 
@@ -143,7 +143,7 @@ footer { background: var(--bg-alt); border-top: 1px solid var(--border); padding
 .link-stat { flex: 1; min-width: 100px; text-align: center; border-radius: 14px; padding: 1rem; border: 1px solid; }
 .link-stat .num { font-family: var(--font-display); font-size: 1.9rem; font-weight: 600; }
 .link-stat .label { font-size: .76rem; color: var(--text-faint); margin-top: .2rem; font-family: var(--font-mono); }
-.link-note { margin-top: 1rem; font-size: .82rem; color: var(--text-dim); padding: .9rem; background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 10px; }
+.link-note { margin-top: 1rem; font-size: .82rem; color: var(--text-dim); padding: .9rem; background: rgba(17,17,17,0.025); border: 1px solid var(--border); border-radius: 10px; }
 
 /* Pricing */
 .pricing-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
@@ -174,6 +174,8 @@ footer { background: var(--bg-alt); border-top: 1px solid var(--border); padding
   .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
 }
   </style>
+<meta name="theme-color" content="#ffffff">
+<meta name="color-scheme" content="light">
 </head>
 <body>
 
