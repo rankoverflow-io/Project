@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Case Studies — Rank Overflow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+:root {
+  --bg: #0a0b0f;
+  --bg-alt: #0e1015;
+  --panel: #14161e;
+  --panel-2: #191c26;
+  --border: rgba(255,255,255,0.08);
+  --border-strong: rgba(255,255,255,0.16);
+  --text: #edeef3;
+  --text-dim: #9a9dac;
+  --text-faint: #62667a;
+  --gold: #f0b93e;
+  --gold-soft: rgba(240,185,62,0.14);
+  --teal: #34d1b8;
+  --teal-soft: rgba(52,209,184,0.12);
+  --red: #ff6e5e;
+
+  --font-display: 'Fraunces', serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+  --nav-h: 76px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body { font-family: var(--font-body); background: var(--bg); color: var(--text); overflow-x: hidden; }
+::selection { background: var(--gold); color: #0a0b0f; }
+
+/* ── TYPOGRAPHY ── */
+h1, h2, h3, h4, h5 { font-family: var(--font-display); line-height: 1.08; font-weight: 600; letter-spacing: -0.01em; }
+h1 { font-size: clamp(2.4rem, 5vw, 4rem); font-weight: 600; }
+h2 { font-size: clamp(1.9rem, 3.6vw, 2.9rem); }
+h3 { font-size: clamp(1.15rem, 2vw, 1.4rem); }
+p { line-height: 1.7; color: var(--text-dim); }
+
+/* ── NAV ── */
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: var(--nav-h); display: flex; align-items: center; padding: 0 5%; background: rgba(10,11,15,0.78); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); transition: border-color .3s; }
+nav.scrolled { border-bottom-color: var(--border-strong); }
+.nav-logo { font-family: var(--font-mono); font-weight: 600; font-size: 1.05rem; color: var(--text); text-decoration: none; display: flex; align-items: center; gap: 9px; letter-spacing: -0.02em; }
+.nav-logo-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); display: inline-block; box-shadow: 0 0 10px var(--gold); }
+.brand-mark { flex-shrink: 0; display: block; }
+.brand-word { display: inline-flex; align-items: baseline; gap: 5px; }
+.brand-word .rk { font-family: var(--font-display); font-style: italic; font-weight: 600; color: var(--gold); letter-spacing: 0; }
+.brand-word .ov { font-family: var(--font-mono); font-weight: 600; letter-spacing: .02em; }
+.nav-links { display: flex; gap: 2.2rem; margin-left: auto; align-items: center; }
+.nav-links a { font-size: .88rem; font-weight: 500; color: var(--text-dim); text-decoration: none; transition: color .2s; }
+.nav-links a:hover, .nav-links a.active { color: var(--text); }
+.nav-cta { background: var(--gold); color: #0a0b0f !important; padding: .6rem 1.3rem; border-radius: 8px; font-weight: 600 !important; font-family: var(--font-mono) !important; font-size: .82rem !important; transition: background .2s, transform .15s !important; }
+.nav-cta:hover { background: #ffcb5f !important; transform: translateY(-1px); }
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; margin-left: auto; }
+.hamburger span { width: 22px; height: 2px; background: var(--text); display: block; }
+.mobile-menu { display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; background: var(--bg-alt); z-index: 999; padding: 1.5rem 5%; flex-direction: column; gap: 1rem; border-bottom: 1px solid var(--border); }
+.mobile-menu a { font-weight: 500; color: var(--text); text-decoration: none; font-size: 1.02rem; padding: .5rem 0; border-bottom: 1px solid var(--border); }
+.mobile-menu.open { display: flex; }
+.page { padding-top: var(--nav-h); min-height: 100vh; }
+
+/* ── BUTTONS ── */
+.btn { display: inline-flex; align-items: center; gap: .5rem; padding: .8rem 1.7rem; border-radius: 8px; font-family: var(--font-body); font-weight: 600; font-size: .92rem; cursor: pointer; border: none; text-decoration: none; transition: all .2s; }
+.btn-primary { background: var(--gold); color: #0a0b0f; }
+.btn-primary:hover { background: #ffcb5f; transform: translateY(-2px); box-shadow: 0 10px 28px rgba(240,185,62,0.22); }
+.btn-outline { background: transparent; color: var(--text); border: 1.5px solid var(--border-strong); }
+.btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+.btn-lg { padding: 1rem 2.2rem; font-size: 1rem; }
+.btn svg { width: 17px; height: 17px; }
+
+/* ── SECTION SHELL ── */
+.section { padding: 6rem 5%; }
+.container { max-width: 1200px; margin: 0 auto; }
+.tag { display: inline-flex; align-items: center; gap: .5rem; font-family: var(--font-mono); font-size: .74rem; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.1rem; }
+.tag::before { content: ''; width: 14px; height: 1px; background: var(--gold); display: inline-block; }
+.text-center { text-align: center; }
+
+/* ── FOOTER ── */
+footer { background: var(--bg-alt); border-top: 1px solid var(--border); padding: 4rem 5% 2rem; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+.footer-logo { font-family: var(--font-mono); font-weight: 600; font-size: 1.05rem; color: var(--text); margin-bottom: 1rem; display: flex; align-items: center; gap: 10px; }
+.footer-desc { font-size: .87rem; color: var(--text-faint); line-height: 1.7; max-width: 260px; }
+.footer-col h5 { font-family: var(--font-mono); text-transform: uppercase; letter-spacing: .05em; color: var(--text-dim); font-size: .78rem; margin-bottom: 1.2rem; font-weight: 500; }
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: .7rem; }
+.footer-col ul li a { font-size: .87rem; color: var(--text-faint); text-decoration: none; transition: .2s; }
+.footer-col ul li a:hover { color: var(--gold); }
+.footer-bottom { border-top: 1px solid var(--border); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+.footer-bottom p { font-size: .8rem; color: var(--text-faint); font-family: var(--font-mono); }
+.footer-socials { display: flex; gap: .8rem; }
+.footer-social { width: 34px; height: 34px; border-radius: 50%; background: var(--panel); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; color: var(--text-dim); text-decoration: none; font-size: .8rem; transition: .2s; }
+.footer-social:hover { border-color: var(--gold); color: var(--gold); }
+
+.fade-up { opacity: 0; transform: translateY(24px); transition: opacity .6s, transform .6s; }
+.fade-up.visible { opacity: 1; transform: none; }
+
+/* ═══════════ CASE STUDIES PAGE ═══════════ */
+.page-hero { padding: 6.5rem 5% 4rem; background: var(--bg); position: relative; overflow: hidden; }
+.page-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 80% 30%, rgba(240,185,62,0.09) 0%, transparent 70%); }
+.page-hero-inner { max-width: 700px; position: relative; z-index: 2; }
+.page-hero h1 { color: var(--text); margin-bottom: 1rem; }
+.page-hero p { color: var(--text-dim); font-size: 1.05rem; }
+
+.case-studies-grid { display: grid; gap: 2rem; margin-top: 1rem; }
+.case-card {
+  background: var(--panel); border-radius: 18px; overflow: hidden; border: 1px solid var(--border);
+  display: grid; grid-template-columns: 1fr 1.4fr; transition: .3s;
+}
+.case-card:hover { transform: translateY(-4px); border-color: var(--border-strong); }
+.case-visual { padding: 2.6rem; display: flex; flex-direction: column; justify-content: center; position: relative; overflow: hidden; }
+.case-visual-content { position: relative; z-index: 2; }
+.case-industry {
+  display: inline-block; font-family: var(--font-mono); font-size: .7rem; font-weight: 500;
+  text-transform: uppercase; letter-spacing: .07em; background: rgba(255,255,255,0.12); color: #fff;
+  border-radius: 100px; padding: .35rem .8rem; margin-bottom: 1.1rem;
+}
+.case-company { font-family: var(--font-display); font-size: 1.7rem; font-weight: 600; color: #fff; line-height: 1.12; }
+.case-metrics { display: flex; gap: 1.6rem; flex-wrap: wrap; margin-top: 1.6rem; }
+.case-metric-num { font-family: var(--font-mono); font-size: 1.5rem; font-weight: 600; color: #fff; }
+.case-metric-label { font-family: var(--font-mono); font-size: .7rem; color: rgba(255,255,255,0.6); margin-top: .1rem; }
+
+.case-content { padding: 2.4rem 2.5rem; }
+.case-content h3 { margin-bottom: .8rem; color: var(--text); }
+.case-content > p { font-size: .89rem; color: var(--text-dim); margin-bottom: 1.5rem; }
+.case-tags { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+.case-tag { font-family: var(--font-mono); font-size: .72rem; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 100px; padding: .3rem .75rem; color: var(--text-dim); }
+.case-result-list { list-style: none; display: flex; flex-direction: column; gap: .55rem; }
+.case-result-list li { font-size: .88rem; color: var(--text-dim); display: flex; align-items: center; gap: .5rem; }
+.case-result-list li::before { content: '↑'; color: var(--teal); font-weight: 700; }
+
+/* Responsive */
+@media(max-width: 900px) {
+  .case-card { grid-template-columns: 1fr; display: block; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+@media(max-width: 640px) {
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+}
+  </style>
+</head>
+<body>
+
+  <nav id="mainNav">
+    <a href="index.html" class="nav-logo">
+      <svg class="brand-mark" viewBox="0 0 70 90" width="28" height="34" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="4" y="20" width="62" height="58" rx="14" fill="var(--panel)" stroke="var(--gold)" stroke-width="1.5"/>
+        <rect x="14" y="46" width="10" height="24" rx="2" fill="var(--teal)"/>
+        <rect x="30" y="36" width="10" height="34" rx="2" fill="var(--teal)"/>
+        <rect x="46" y="8" width="10" height="62" rx="2" fill="var(--gold)"/>
+        <circle cx="51" cy="8" r="4" fill="var(--gold)"/>
+      </svg>
+      <span class="brand-word"><span class="rk">Rank</span><span class="ov">Overflow</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html" data-page="home">Home</a>
+      <a href="services.html" data-page="services">Services</a>
+      <a href="casestudies.html" data-page="casestudies" class="active">Case Studies</a>
+      <a href="about.html" data-page="about">About Us</a>
+      <a href="contact.html" data-page="contact">Contact</a>
+      <a href="score.html" data-page="score" class="nav-cta">Get My Score →</a>
+    </div>
+    <div class="hamburger" onclick="toggleMenu()" id="hamburger"><span></span><span></span><span></span></div>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html" onclick="toggleMenu()">Home</a>
+    <a href="services.html" onclick="toggleMenu()">Services</a>
+    <a href="casestudies.html" class="active" onclick="toggleMenu()">Case Studies</a>
+    <a href="about.html" onclick="toggleMenu()">About Us</a>
+    <a href="contact.html" onclick="toggleMenu()">Contact</a>
+    <a href="score.html" onclick="toggleMenu()" style="color:var(--gold);font-weight:700;">Get My Score →</a>
+  </div>
+
+  <main id="content">
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <span class="tag">Case Studies</span>
+    <h1>Proof, Not Promises</h1>
+    <p>Real campaigns, real data, real results. See how we've helped businesses across industries dominate their search categories.</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="container">
+    <div class="case-studies-grid">
+
+      <!-- Case 1: boldperformance.nl -->
+      <div class="case-card">
+        <div class="case-visual" style="background:linear-gradient(135deg,#12233d,#1c3a5e);">
+          <div class="case-visual-content">
+            <span class="case-industry">Performance Marketing / NL</span>
+            <div class="case-company">Bold<br>Performance</div>
+            <div class="case-metrics">
+              <div class="case-metric"><div class="case-metric-num">85.6k</div><div class="case-metric-label">TOTAL IMPRESSIONS</div></div>
+              <div class="case-metric"><div class="case-metric-num">1.07k</div><div class="case-metric-label">TOTAL CLICKS</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="case-content">
+          <h3>Full SEO Overhaul Driving 85,600+ Impressions in 3 Months</h3>
+          <p>boldperformance.nl needed a complete SEO foundation built from scratch. We executed on-page optimisation, technical SEO improvements, landing page content optimisation, and page speed improvements — delivering strong, sustained organic visibility.</p>
+          <div class="case-tags">
+            <span class="case-tag">On-Page SEO</span>
+            <span class="case-tag">Technical SEO</span>
+            <span class="case-tag">Content Optimisation</span>
+            <span class="case-tag">Page Speed</span>
+          </div>
+          <ul class="case-result-list">
+            <li>85,600+ total impressions in a 3-month period</li>
+            <li>1,070+ total clicks from organic search</li>
+            <li>Average CTR of 1.2% with avg. position 16.1</li>
+            <li>Stable upward trend in clicks and impressions</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Case 2: getsavage.nl -->
+      <div class="case-card">
+        <div class="case-visual" style="background:linear-gradient(135deg,#221240,#3e1a5c);">
+          <div class="case-visual-content">
+            <span class="case-industry">E-Commerce / Entertainment NL</span>
+            <div class="case-company">Get<br>Savage</div>
+            <div class="case-metrics">
+              <div class="case-metric"><div class="case-metric-num">45→82</div><div class="case-metric-label">MOBILE SPEED SCORE</div></div>
+              <div class="case-metric"><div class="case-metric-num">89→98</div><div class="case-metric-label">DESKTOP SPEED SCORE</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="case-content">
+          <h3>Massive Page Speed Gains — Mobile Score from 45 to 82, Desktop from 89 to 98</h3>
+          <p>getsavage.nl was suffering from poor Core Web Vitals, hurting both rankings and user experience. We executed a focused on-page SEO, performance, and page speed improvement sprint that delivered dramatic score improvements across both mobile and desktop.</p>
+          <div class="case-tags">
+            <span class="case-tag">On-Page SEO</span>
+            <span class="case-tag">Core Web Vitals</span>
+            <span class="case-tag">Page Speed</span>
+            <span class="case-tag">Performance</span>
+          </div>
+          <ul class="case-result-list">
+            <li>Mobile performance score improved from 45 to 82 (+82%)</li>
+            <li>Desktop performance score improved from 89 to 98 (+10%)</li>
+            <li>Accessibility score raised to 85 across both devices</li>
+            <li>Best Practices score held at 100 — perfect</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Case 3: qualityfit.be -->
+      <div class="case-card">
+        <div class="case-visual" style="background:linear-gradient(135deg,#0f2c1e,#1a5236);">
+          <div class="case-visual-content">
+            <span class="case-industry">Health & Fitness / BE</span>
+            <div class="case-company">Quality<br>Fit</div>
+            <div class="case-metrics">
+              <div class="case-metric"><div class="case-metric-num">53.4k</div><div class="case-metric-label">TOTAL IMPRESSIONS</div></div>
+              <div class="case-metric"><div class="case-metric-num">1.19k</div><div class="case-metric-label">TOTAL CLICKS</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="case-content">
+          <h3>53,400 Impressions & 1,190 Clicks for a Belgian Fitness Brand</h3>
+          <p>qualityfit.be came to us with a technically sound site but poor on-page SEO and slow load times that were suppressing rankings. We delivered a focused SEO and speed overhaul, resulting in strong Google Search Console performance over a 3-month window.</p>
+          <div class="case-tags">
+            <span class="case-tag">On-Page SEO</span>
+            <span class="case-tag">Technical SEO</span>
+            <span class="case-tag">Page Speed</span>
+            <span class="case-tag">Health & Fitness</span>
+          </div>
+          <ul class="case-result-list">
+            <li>53,400+ total impressions in a 3-month period</li>
+            <li>1,190+ total organic clicks delivered</li>
+            <li>Average CTR of 2.2% with avg. position 6.8</li>
+            <li>Consistent upward trend across clicks and impressions</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="text-center" style="margin-top:3.5rem">
+      <p style="color:var(--text-dim); margin-bottom:1.2rem; font-size:.95rem;">Want results like these? It starts with understanding where you stand.</p>
+      <a href="score.html" class="btn btn-primary btn-lg">Get My Free Website Score →</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <svg class="brand-mark" viewBox="0 0 70 90" width="26" height="32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="4" y="20" width="62" height="58" rx="14" fill="var(--bg)" stroke="var(--gold)" stroke-width="1.5"/>
+              <rect x="14" y="46" width="10" height="24" rx="2" fill="var(--teal)"/>
+              <rect x="30" y="36" width="10" height="34" rx="2" fill="var(--teal)"/>
+              <rect x="46" y="8" width="10" height="62" rx="2" fill="var(--gold)"/>
+              <circle cx="51" cy="8" r="4" fill="var(--gold)"/>
+            </svg>
+            <span class="brand-word"><span class="rk">Rank</span><span class="ov">Overflow</span></span>
+          </div>
+          <p class="footer-desc">Europe's results-driven SEO agency. We help businesses rank higher, grow faster, and win more customers through organic search.</p>
+        </div>
+        <div class="footer-col"><h5>Services</h5><ul>
+          <li><a href="services.html">Technical SEO</a></li><li><a href="services.html">Content Strategy</a></li>
+          <li><a href="services.html">Link Building</a></li><li><a href="services.html">Local SEO</a></li>
+          <li><a href="services.html">E-commerce SEO</a></li></ul></div>
+        <div class="footer-col"><h5>Company</h5><ul>
+          <li><a href="about.html">About Us</a></li><li><a href="casestudies.html">Case Studies</a></li>
+          <li><a href="contact.html">Contact</a></li><li><a href="score.html">Get My Score</a></li></ul></div>
+        <div class="footer-col"><h5>Contact</h5><ul>
+          <li><a href="mailto:hello@rankoverflow.com">hello@rankoverflow.com</a></li>
+          <li><a href="tel:+923001234567">+92 300 1234567</a></li>
+          <li><a href="contact.html">Blue Area, Islamabad</a></li></ul>
+          <div style="margin-top:1.5rem"><a href="score.html" class="btn btn-primary">Get Free Score</a></div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 Rank Overflow — all rights reserved</p>
+        <div class="footer-socials">
+          <a href="#" class="footer-social">in</a><a href="#" class="footer-social">𝕏</a>
+          <a href="#" class="footer-social">f</a><a href="#" class="footer-social">▶</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+function toggleMenu() {
+  const menu = document.getElementById('mobileMenu');
+  if (menu) menu.classList.toggle('open');
+}
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('mainNav');
+  if (nav) nav.classList.toggle('scrolled', window.scrollY > 20);
+});
+function initFadeUps() {
+  setTimeout(() => {
+    const els = document.querySelectorAll('#content .fade-up');
+    if (els.length === 0) return;
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 80);
+      });
+    }, { threshold: 0.1 });
+    els.forEach(el => observer.observe(el));
+  }, 100);
+}
+document.addEventListener('DOMContentLoaded', () => { initFadeUps(); });
+  </script>
+</body>
+</html>
