@@ -289,24 +289,24 @@ footer { background: var(--bg-alt); border-top: 1px solid var(--border); padding
           <div class="form-row">
             <div class="form-group">
               <label>First Name</label>
-              <input type="text" placeholder="Ahmed">
+              <input type="text" id="cfFirstName" placeholder="Ahmed">
             </div>
             <div class="form-group">
               <label>Last Name</label>
-              <input type="text" placeholder="Khan">
+              <input type="text" id="cfLastName" placeholder="Khan">
             </div>
           </div>
           <div class="form-group">
             <label>Business Email</label>
-            <input type="email" placeholder="ahmed@company.com">
+            <input type="email" id="cfEmail" placeholder="ahmed@company.com">
           </div>
           <div class="form-group">
             <label>Website URL</label>
-            <input type="url" placeholder="https://yourwebsite.com">
+            <input type="url" id="cfWebsiteUrl" placeholder="https://yourwebsite.com">
           </div>
           <div class="form-group">
             <label>Monthly SEO Budget</label>
-            <select>
+            <select id="cfBudget">
               <option value="">Select a range...</option>
               <option>Under $500/mo</option>
               <option>$500 – $1,000/mo</option>
@@ -317,9 +317,15 @@ footer { background: var(--bg-alt); border-top: 1px solid var(--border); padding
           </div>
           <div class="form-group">
             <label>What's your main goal?</label>
-            <textarea placeholder="Tell us about your business, current SEO challenges, and what you're hoping to achieve..."></textarea>
+            <textarea id="cfMessage" placeholder="Tell us about your business, current SEO challenges, and what you're hoping to achieve..."></textarea>
           </div>
-          <button class="btn btn-primary btn-lg" style="width:100%;justify-content:center;" onclick="submitContact()">Send Message →</button>
+          <!-- Honeypot: hidden from real users, bots tend to fill every field -->
+          <div style="position:absolute;left:-9999px;top:-9999px;" aria-hidden="true">
+            <label for="cfWebsiteHp">Leave this field empty</label>
+            <input type="text" id="cfWebsiteHp" name="website" tabindex="-1" autocomplete="off">
+          </div>
+          <div id="contactError" style="display:none;color:var(--red);font-size:.85rem;margin-bottom:1rem;"></div>
+          <button class="btn btn-primary btn-lg" id="contactSubmitBtn" style="width:100%;justify-content:center;" onclick="submitContact()">Send Message →</button>
         </div>
         <div class="form-success" id="contactSuccess">
           <div class="form-success-icon">✅</div>
@@ -410,11 +416,69 @@ function initFadeUps() {
 }
 document.addEventListener('DOMContentLoaded', () => { initFadeUps(); });
 
-function submitContact() {
+const SUBMIT_LEAD_URL = 'https://vqdlvxitepnkcxbpynuf.supabase.co/functions/v1/submit-lead';
+
+async function submitContact() {
+  const btn = document.getElementById('contactSubmitBtn');
+  const errorBox = document.getElementById('contactError');
   const wrapper = document.getElementById('contactFormWrapper');
   const success = document.getElementById('contactSuccess');
-  if (wrapper) wrapper.style.display = 'none';
-  if (success) success.classList.add('visible');
+
+  const firstName = document.getElementById('cfFirstName').value.trim();
+  const lastName = document.getElementById('cfLastName').value.trim();
+  const email = document.getElementById('cfEmail').value.trim();
+  const websiteUrl = document.getElementById('cfWebsiteUrl').value.trim();
+  const budget = document.getElementById('cfBudget').value;
+  const message = document.getElementById('cfMessage').value.trim();
+  const honeypot = document.getElementById('cfWebsiteHp').value;
+
+  errorBox.style.display = 'none';
+
+  if (!firstName || !email) {
+    errorBox.textContent = 'Please enter at least your first name and email.';
+    errorBox.style.display = 'block';
+    return;
+  }
+  const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  if (!emailOk) {
+    errorBox.textContent = 'Please enter a valid email address.';
+    errorBox.style.display = 'block';
+    return;
+  }
+
+  const originalBtnText = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = 'Sending...';
+
+  try {
+    const res = await fetch(SUBMIT_LEAD_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        type: 'lead',
+        source: 'contact_form',
+        name: `${firstName} ${lastName}`.trim(),
+        email: email,
+        message: message,
+        website: honeypot,
+        metadata: { website_url: websiteUrl || null, budget: budget || null }
+      })
+    });
+
+    const data = await res.json().catch(() => ({}));
+
+    if (!res.ok || data.error) {
+      throw new Error(data.error || 'Something went wrong. Please try again.');
+    }
+
+    if (wrapper) wrapper.style.display = 'none';
+    if (success) success.classList.add('visible');
+  } catch (err) {
+    errorBox.textContent = "Couldn't send your message — please try again in a moment.";
+    errorBox.style.display = 'block';
+    btn.disabled = false;
+    btn.textContent = originalBtnText;
+  }
 }
   </script>
 </body>
