@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script>(function(){try{var t=localStorage.getItem('rof-theme');if(t==='dark'){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}})();</script>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact Us — Rank Overflow</title>
@@ -28,7 +30,27 @@
   --font-body: 'Inter', sans-serif;
   --font-mono: 'IBM Plex Mono', monospace;
   --nav-h: 76px;
+--nav-bg: rgba(255,255,255,0.94);
 }
+
+    html[data-theme="dark"] {
+      --bg: #0a0b0f;
+      --bg-alt: #101218;
+      --panel: #14161c;
+      --panel-2: #1c1f26;
+      --border: rgba(255,255,255,0.08);
+      --border-strong: rgba(255,255,255,0.16);
+      --text: #f5f5f5;
+      --text-dim: #9ca3af;
+      --text-faint: #6b7280;
+      --gold: #f0b93e;
+      --gold-soft: rgba(240,185,62,0.16);
+      --teal: #34d1b8;
+      --teal-soft: rgba(52,209,184,0.16);
+      --red: #ff6e5e;
+      --nav-bg: rgba(10,11,15,0.78);
+    }
+
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; font-size: 16px; }
@@ -43,7 +65,7 @@ h3 { font-size: clamp(1.15rem, 2vw, 1.4rem); }
 p { line-height: 1.7; color: var(--text-dim); }
 
 /* ── NAV ── */
-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: var(--nav-h); display: flex; align-items: center; padding: 0 5%; background: rgba(255,255,255,0.94); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); transition: border-color .3s; }
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: var(--nav-h); display: flex; align-items: center; padding: 0 5%; background: var(--nav-bg); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); transition: border-color .3s; }
 nav.scrolled { border-bottom-color: var(--border-strong); }
 .nav-logo { font-family: var(--font-mono); font-weight: 600; font-size: 1.05rem; color: var(--text); text-decoration: none; display: flex; align-items: center; gap: 9px; letter-spacing: -0.02em; }
 .nav-logo-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); display: inline-block; box-shadow: 0 0 10px var(--gold); }
@@ -150,6 +172,31 @@ footer { background: var(--bg-alt); border-top: 1px solid var(--border); padding
   .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
   .form-row { grid-template-columns: 1fr; }
 }
+  
+    .theme-toggle {
+      order: -1;
+      margin-right: 14px;
+      width: 38px;
+      height: 38px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--panel);
+      cursor: pointer;
+      transition: border-color .2s, background .2s, transform .15s;
+    }
+    .theme-toggle:hover { border-color: var(--border-strong); transform: translateY(-1px); }
+    .theme-toggle svg { width: 17px; height: 17px; display: block; }
+    .theme-toggle .icon-sun { color: var(--gold); display: none; }
+    .theme-toggle .icon-moon { color: var(--text-dim); display: block; }
+    html[data-theme="dark"] .theme-toggle .icon-sun { display: block; }
+    html[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
+    @media (max-width: 860px) {
+      .theme-toggle { order: 0; margin-right: 10px; }
+    }
   </style>
 <meta name="theme-color" content="#ffffff">
 <meta name="color-scheme" content="light">
@@ -157,6 +204,11 @@ footer { background: var(--bg-alt); border-top: 1px solid var(--border); padding
 <body>
 
   <nav id="mainNav">
+    <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Toggle dark mode" title="Toggle light / dark mode">
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+    </button>
+
     <a href="index.html" class="nav-logo">
       <svg class="brand-mark" viewBox="0 0 70 90" width="28" height="34" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <rect x="4" y="20" width="62" height="58" rx="14" fill="var(--panel)" stroke="var(--gold)" stroke-width="1.5"/>
@@ -320,6 +372,20 @@ footer { background: var(--bg-alt); border-top: 1px solid var(--border); padding
   </footer>
 
   <script>
+function toggleTheme() {
+  const root = document.documentElement;
+  const isDark = root.getAttribute('data-theme') === 'dark';
+  const meta = document.querySelector('meta[name="theme-color"]');
+  if (isDark) {
+    root.removeAttribute('data-theme');
+    try { localStorage.setItem('rof-theme', 'light'); } catch (e) {}
+    if (meta) meta.setAttribute('content', '#ffffff');
+  } else {
+    root.setAttribute('data-theme', 'dark');
+    try { localStorage.setItem('rof-theme', 'dark'); } catch (e) {}
+    if (meta) meta.setAttribute('content', '#0a0b0f');
+  }
+}
 function toggleMenu() {
   const menu = document.getElementById('mobileMenu');
   if (menu) menu.classList.toggle('open');
