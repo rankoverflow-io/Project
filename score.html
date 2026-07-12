@@ -330,7 +330,7 @@ footer { background: var(--bg-alt); border-top: 1px solid var(--border); padding
         </div>
         <div class="form-group">
           <label>Biggest SEO Challenge Right Now</label>
-          <select>
+          <select id="scoreChallenge">
             <option value="">Select one...</option>
             <option>Not ranking for target keywords</option>
             <option>Traffic is declining</option>
@@ -342,7 +342,7 @@ footer { background: var(--bg-alt); border-top: 1px solid var(--border); padding
         </div>
         <div class="form-group">
           <label>Monthly Organic Traffic (approx.)</label>
-          <select>
+          <select id="scoreTraffic">
             <option value="">Select range...</option>
             <option>0 – 500 visits/mo</option>
             <option>500 – 2,000 visits/mo</option>
@@ -353,10 +353,16 @@ footer { background: var(--bg-alt); border-top: 1px solid var(--border); padding
         </div>
         <div class="form-group">
           <label>Anything specific you want us to focus on? (optional)</label>
-          <textarea placeholder="e.g. our product pages aren't ranking, we recently migrated to a new domain, we want to target Dubai market..."></textarea>
+          <textarea id="scoreNotes" placeholder="e.g. our product pages aren't ranking, we recently migrated to a new domain, we want to target Dubai market..."></textarea>
         </div>
+        <!-- Honeypot: hidden from real users, bots tend to fill every field -->
+        <div style="position:absolute;left:-9999px;top:-9999px;" aria-hidden="true">
+          <label for="scoreHp">Leave this field empty</label>
+          <input type="text" id="scoreHp" name="website" tabindex="-1" autocomplete="off">
+        </div>
+        <div id="scoreError" style="display:none;color:var(--red);font-size:.85rem;margin-bottom:1rem;"></div>
 
-        <button class="btn btn-primary btn-lg" style="width:100%;justify-content:center;font-size:1.02rem;" onclick="submitScoreForm()">
+        <button class="btn btn-primary btn-lg" id="scoreSubmitBtn" style="width:100%;justify-content:center;font-size:1.02rem;" onclick="submitScoreForm()">
           🎯 Send Me My Free Score
         </button>
         <p style="text-align:center; font-size:.8rem; color:var(--text-faint); margin-top:1rem;">✓ Delivered within 48 hours &nbsp;&nbsp; ✓ 100% free &nbsp;&nbsp; ✓ No sales calls unless you want one</p>
@@ -492,16 +498,74 @@ function updateScoreStep() {
   }
 }
 
-function submitScoreForm() {
+const SUBMIT_LEAD_URL = 'https://vqdlvxitepnkcxbpynuf.supabase.co/functions/v1/submit-lead';
+
+async function submitScoreForm() {
+  const btn = document.getElementById('scoreSubmitBtn');
+  const errorBox = document.getElementById('scoreError');
   const formContent = document.getElementById('scoreFormContent');
   const successBox = document.getElementById('scoreSuccess');
   const step3 = document.getElementById('step-bar-3');
 
-  if (formContent) formContent.style.display = 'none';
-  if (successBox) successBox.classList.add('visible');
-  if (step3) {
-    step3.classList.add('done');
-    step3.classList.remove('active');
+  const url = document.getElementById('scoreUrl').value.trim();
+  const name = document.getElementById('scoreName').value.trim();
+  const email = document.getElementById('scoreEmail').value.trim();
+  const industry = document.getElementById('scoreIndustry').value;
+  const challenge = document.getElementById('scoreChallenge').value;
+  const traffic = document.getElementById('scoreTraffic').value;
+  const notes = document.getElementById('scoreNotes').value.trim();
+  const honeypot = document.getElementById('scoreHp').value;
+
+  errorBox.style.display = 'none';
+
+  if (!url || !name || !email || !industry) {
+    errorBox.textContent = 'Please fill in your website URL, name, email, and industry.';
+    errorBox.style.display = 'block';
+    return;
+  }
+  const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  if (!emailOk) {
+    errorBox.textContent = 'Please enter a valid email address.';
+    errorBox.style.display = 'block';
+    return;
+  }
+
+  const originalBtnText = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = 'Sending...';
+
+  try {
+    const res = await fetch(SUBMIT_LEAD_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        type: 'lead',
+        source: 'score_audit',
+        name: name,
+        email: email,
+        message: notes,
+        website: honeypot,
+        metadata: { website_url: url, industry, challenge: challenge || null, traffic: traffic || null }
+      })
+    });
+
+    const data = await res.json().catch(() => ({}));
+
+    if (!res.ok || data.error) {
+      throw new Error(data.error || 'Something went wrong. Please try again.');
+    }
+
+    if (formContent) formContent.style.display = 'none';
+    if (successBox) successBox.classList.add('visible');
+    if (step3) {
+      step3.classList.add('done');
+      step3.classList.remove('active');
+    }
+  } catch (err) {
+    errorBox.textContent = "Couldn't send your request — please try again in a moment.";
+    errorBox.style.display = 'block';
+    btn.disabled = false;
+    btn.textContent = originalBtnText;
   }
 }
 
