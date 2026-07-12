@@ -305,7 +305,16 @@ footer { background: var(--bg-alt); border-top: 1px solid var(--border); padding
             <input type="url" id="cfWebsiteUrl" placeholder="https://yourwebsite.com">
           </div>
           <div class="form-group">
-            <label>Monthly SEO Budget</label>
+            <label>What are you interested in?</label>
+            <select id="cfInterest">
+              <option value="">Select one...</option>
+              <option>SEO Services</option>
+              <option>AI Automation</option>
+              <option>Both / Not Sure Yet</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Monthly Budget</label>
             <select id="cfBudget">
               <option value="">Select a range...</option>
               <option>Under $500/mo</option>
@@ -317,7 +326,7 @@ footer { background: var(--bg-alt); border-top: 1px solid var(--border); padding
           </div>
           <div class="form-group">
             <label>What's your main goal?</label>
-            <textarea id="cfMessage" placeholder="Tell us about your business, current SEO challenges, and what you're hoping to achieve..."></textarea>
+            <textarea id="cfMessage" placeholder="Tell us about your business and what you're hoping to achieve..."></textarea>
           </div>
           <!-- Honeypot: hidden from real users, bots tend to fill every field -->
           <div style="position:absolute;left:-9999px;top:-9999px;" aria-hidden="true">
@@ -428,6 +437,7 @@ async function submitContact() {
   const lastName = document.getElementById('cfLastName').value.trim();
   const email = document.getElementById('cfEmail').value.trim();
   const websiteUrl = document.getElementById('cfWebsiteUrl').value.trim();
+  const interest = document.getElementById('cfInterest').value;
   const budget = document.getElementById('cfBudget').value;
   const message = document.getElementById('cfMessage').value.trim();
   const honeypot = document.getElementById('cfWebsiteHp').value;
@@ -461,7 +471,7 @@ async function submitContact() {
         email: email,
         message: message,
         website: honeypot,
-        metadata: { website_url: websiteUrl || null, budget: budget || null }
+        metadata: { website_url: websiteUrl || null, interest: interest || null, budget: budget || null }
       })
     });
 
