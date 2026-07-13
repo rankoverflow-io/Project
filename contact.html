@@ -200,7 +200,6 @@ footer { background: var(--bg-alt); border-top: 1px solid var(--border); padding
   </style>
 <meta name="theme-color" content="#ffffff">
 <meta name="color-scheme" content="light">
-<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 <body>
 
@@ -339,7 +338,6 @@ footer { background: var(--bg-alt); border-top: 1px solid var(--border); padding
             <input type="text" id="cfWebsiteHp" name="website" tabindex="-1" autocomplete="off">
           </div>
           <div id="contactError" style="display:none;color:var(--red);font-size:.85rem;margin-bottom:1rem;"></div>
-          <div class="cf-turnstile" data-sitekey="0x4AAAAAAD00Mzml4-rhbIy3" data-callback="onTurnstileVerified" data-theme="auto" style="margin-bottom:1rem;"></div>
           <button class="btn btn-primary btn-lg" id="contactSubmitBtn" style="width:100%;justify-content:center;" onclick="submitContact()">Send Message →</button>
         </div>
         <div class="form-success" id="contactSuccess">
@@ -433,8 +431,7 @@ document.addEventListener('DOMContentLoaded', () => { initFadeUps(); });
 
 const SUBMIT_LEAD_URL = 'https://vqdlvxitepnkcxbpynuf.supabase.co/functions/v1/submit-lead';
 
-let contactTurnstileToken = null;
-function onTurnstileVerified(token) { contactTurnstileToken = token; }
+const contactPageLoadedAt = Date.now();
 
 async function submitContact() {
   const btn = document.getElementById('contactSubmitBtn');
@@ -465,11 +462,6 @@ async function submitContact() {
     errorBox.style.display = 'block';
     return;
   }
-  if (!contactTurnstileToken) {
-    errorBox.textContent = 'Please wait a moment for the security check to finish, then try again.';
-    errorBox.style.display = 'block';
-    return;
-  }
 
   const originalBtnText = btn.textContent;
   btn.disabled = true;
@@ -487,7 +479,7 @@ async function submitContact() {
         phone: phone || null,
         message: message,
         website: honeypot,
-        turnstileToken: contactTurnstileToken,
+        formElapsedMs: Date.now() - contactPageLoadedAt,
         metadata: { website_url: websiteUrl || null, interest: interest || null, budget: budget || null }
       })
     });
