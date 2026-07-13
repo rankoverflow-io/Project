@@ -1,34 +1,14 @@
 <!DOCTYPE html>
+
 <html lang="en">
-
 <head>
-  <script>(function(){try{var t=localStorage.getItem('rof-theme');if(t==='dark'){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}})();</script>
-
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rank Overflow — Rank Higher. Grow Faster.</title>
-  <meta name="description" content="Rank Overflow is an SEO and AI automation agency delivering measurable rankings, traffic, and revenue growth through technical SEO, content strategy, and AI-powered workflows.">
-  <link rel="canonical" href="https://rankoverflow.com/">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Rank Overflow">
-  <meta property="og:title" content="Rank Overflow — Rank Higher. Grow Faster.">
-  <meta property="og:description" content="Rank Overflow is an SEO and AI automation agency delivering measurable rankings, traffic, and revenue growth through technical SEO, content strategy, and AI-powered workflows.">
-  <meta property="og:url" content="https://rankoverflow.com/">
-  <meta property="og:image" content="https://rankoverflow.com/og-image.png">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Rank Overflow — Rank Higher. Grow Faster.">
-  <meta name="twitter:description" content="Rank Overflow is an SEO and AI automation agency delivering measurable rankings, traffic, and revenue growth through technical SEO, content strategy, and AI-powered workflows.">
-  <meta name="twitter:image" content="https://rankoverflow.com/og-image.png">
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "Rank Overflow", "url": "https://rankoverflow.com"}</script>
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "Rank Overflow", "url": "https://rankoverflow.com"}</script>
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://rankoverflow.com/"}]}</script>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link
-    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
-    rel="stylesheet">
-
-  <style>
+<script>(function(){try{var t=localStorage.getItem('rof-theme');if(t==='dark'){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}})();</script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Rank Overflow — Rank Higher. Grow Faster.</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&amp;family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<style>
     :root {
       /* ── Color: near-black navy base, gold = "position #1", teal = secondary data accent ── */
       --bg: #ffffff;
@@ -1315,444 +1295,397 @@
       .theme-toggle { order: 0; margin-right: 10px; }
     }
   </style>
-<meta name="theme-color" content="#ffffff">
-<meta name="color-scheme" content="light">
+<meta content="#ffffff" name="theme-color"/>
+<meta content="light" name="color-scheme"/>
 </head>
-
 <body>
+<nav id="mainNav">
+<button aria-label="Toggle dark mode" class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Toggle light / dark mode">
+<svg class="icon-moon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+<svg class="icon-sun" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path></svg>
+</button>
+<a class="nav-logo" href="index.html">
+<svg aria-hidden="true" class="brand-mark" height="34" viewbox="0 0 70 90" width="28" xmlns="http://www.w3.org/2000/svg">
+<rect fill="var(--panel)" height="58" rx="14" stroke="var(--gold)" stroke-width="1.5" width="62" x="4" y="20"></rect>
+<rect fill="var(--teal)" height="24" rx="2" width="10" x="14" y="46"></rect>
+<rect fill="var(--teal)" height="34" rx="2" width="10" x="30" y="36"></rect>
+<rect fill="var(--gold)" height="62" rx="2" width="10" x="46" y="8"></rect>
+<circle cx="51" cy="8" fill="var(--gold)" r="4"></circle>
+</svg>
+<span class="brand-word"><span class="rk">Rank</span><span class="ov">Overflow</span></span>
+</a>
+<div class="nav-links">
+<a class="active" data-page="home" href="index.html">Home</a>
+<a data-page="services" href="services.html">Services</a>
+<a data-page="ai-services" href="ai-services.html">AI Services</a>
+<a data-page="casestudies" href="casestudies.html">Case Studies</a>
+<a data-page="about" href="about.html">About Us</a>
+<a data-page="contact" href="contact.html">Contact</a>
+<a class="nav-cta" data-page="score" href="score.html">Get My Score →</a>
+</div>
+<div class="hamburger" id="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+<a href="index.html" onclick="toggleMenu()">Home</a>
+<a href="services.html" onclick="toggleMenu()">Services</a>
+<a href="ai-services.html" onclick="toggleMenu()">AI Services</a>
+<a href="casestudies.html" onclick="toggleMenu()">Case Studies</a>
+<a href="about.html" onclick="toggleMenu()">About Us</a>
+<a href="contact.html" onclick="toggleMenu()">Contact</a>
+<a href="score.html" onclick="toggleMenu()" style="color:var(--gold);font-weight:700;">Get My Score →</a>
+</div>
+<main id="content">
+<!-- HERO -->
+<section class="hero">
+<div class="hero-grid"></div>
+<div class="hero-grid-split">
+<div class="hero-left">
+<div class="hero-eyebrow">
+<span class="hero-eyebrow-dot"></span>
 
-  <nav id="mainNav">
-    <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Toggle dark mode" title="Toggle light / dark mode">
-      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
-    </button>
-
-    <a href="index.html" class="nav-logo">
-      <svg class="brand-mark" viewBox="0 0 70 90" width="28" height="34" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <rect x="4" y="20" width="62" height="58" rx="14" fill="var(--panel)" stroke="var(--gold)" stroke-width="1.5"/>
-        <rect x="14" y="46" width="10" height="24" rx="2" fill="var(--teal)"/>
-        <rect x="30" y="36" width="10" height="34" rx="2" fill="var(--teal)"/>
-        <rect x="46" y="8" width="10" height="62" rx="2" fill="var(--gold)"/>
-        <circle cx="51" cy="8" r="4" fill="var(--gold)"/>
-      </svg>
-      <span class="brand-word"><span class="rk">Rank</span><span class="ov">Overflow</span></span>
-    </a>
-    <div class="nav-links">
-      <a href="index.html" data-page="home" class="active">Home</a>
-      <a href="services.html" data-page="services">Services</a>
-      <a href="ai-services.html" data-page="ai-services">AI Services</a>
-      <a href="casestudies.html" data-page="casestudies">Case Studies</a>
-      <a href="about.html" data-page="about">About Us</a>
-      <a href="contact.html" data-page="contact">Contact</a>
-      <a href="score.html" data-page="score" class="nav-cta">Get My Score →</a>
-    </div>
-    <div class="hamburger" onclick="toggleMenu()" id="hamburger"><span></span><span></span><span></span></div>
-  </nav>
-
-  <div class="mobile-menu" id="mobileMenu">
-    <a href="index.html" onclick="toggleMenu()">Home</a>
-    <a href="services.html" onclick="toggleMenu()">Services</a>
-    <a href="ai-services.html" onclick="toggleMenu()">AI Services</a>
-    <a href="casestudies.html" onclick="toggleMenu()">Case Studies</a>
-    <a href="about.html" onclick="toggleMenu()">About Us</a>
-    <a href="contact.html" onclick="toggleMenu()">Contact</a>
-    <a href="score.html" onclick="toggleMenu()" style="color:var(--gold);font-weight:700;">Get My Score →</a>
-  </div>
-
-  <main id="content">
-
-    <!-- HERO -->
-    <section class="hero">
-      <div class="hero-grid"></div>
-      <div class="hero-grid-split">
-        <div class="hero-left">
-          <div class="hero-eyebrow">
-            <span class="hero-eyebrow-dot"></span>
-            <span>Europe's Results-Driven SEO Agency</span>
-          </div>
-          <h1>Rank Higher.<br><em>Grow Faster.</em><br>Win More.</h1>
-          <p class="hero-sub">Rank Overflow turns underperforming websites into organic growth machines. Data-driven
+</div>
+<h1>Rank Higher.<br/><strong style="color:#f4b73f;font-weight:700;">Grow Faster.</strong><br/>Win More.</h1>
+<p class="hero-sub">Rank Overflow turns underperforming websites into organic growth machines. Data-driven
             strategies, measurable results, zero fluff.</p>
-          <div class="hero-quick-audit">
-            <input type="url" id="heroAuditUrl" placeholder="Enter your website (e.g. www.yoursite.com)">
-            <button class="btn-submit" onclick="triggerHeroAudit()">
-              <span>Scan Free</span>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
-              </svg>
-            </button>
-          </div>
-          <div class="hero-stats">
-            <div class="hero-stat">
-              <div class="hero-stat-num">139<span>k+</span></div>
-              <div class="hero-stat-label">TOTAL IMPRESSIONS</div>
-            </div>
-            <div class="hero-stat">
-              <div class="hero-stat-num">98<span>%</span></div>
-              <div class="hero-stat-label">DESKTOP PERFORMANCE</div>
-            </div>
-            <div class="hero-stat">
-              <div class="hero-stat-num">82<span>%</span></div>
-              <div class="hero-stat-label">MOBILE SPEED GAIN</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="hero-right">
-          <div class="serp-card">
-            <div class="serp-header">
-              <span class="serp-header-label"><span class="dot"></span>Live rank tracking</span>
-              <span class="serp-header-label">google.com/search</span>
-            </div>
-            <div class="rank-shift">
-              <div>
-                <div class="rank-before">#47</div>
-              </div>
-              <span class="rank-arrow">→</span>
-              <div>
-                <div class="rank-after">#1</div>
-                <div class="rank-after-label">Target keyword position</div>
-              </div>
-            </div>
-            <div class="serp-mock">
-              <div class="serp-mock-url"><span class="favicon">●</span>yourbusiness.com › official-site</div>
-              <div class="serp-mock-title">YourBusiness — Ranked #1 in Search Results</div>
-              <div class="serp-mock-desc">Optimized by Rank Overflow. Technical SEO, content architecture, and link
+<div class="hero-quick-audit">
+<input id="heroAuditUrl" placeholder="Enter your website (e.g. www.yoursite.com)" type="url"/>
+<button class="btn-submit" onclick="triggerHeroAudit()">
+<span>Scan Free</span>
+<svg fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24">
+<path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
+</svg>
+</button>
+</div>
+<div class="hero-stats">
+<div class="hero-stat">
+<div class="hero-stat-num">139<span>k+</span></div>
+<div class="hero-stat-label">TOTAL IMPRESSIONS</div>
+</div>
+<div class="hero-stat">
+<div class="hero-stat-num">98<span>%</span></div>
+<div class="hero-stat-label">DESKTOP PERFORMANCE</div>
+</div>
+<div class="hero-stat">
+<div class="hero-stat-num">82<span>%</span></div>
+<div class="hero-stat-label">MOBILE SPEED GAIN</div>
+</div>
+</div>
+</div>
+<div class="hero-right">
+<div class="serp-card">
+<div class="serp-header">
+<span class="serp-header-label"><span class="dot"></span>Live rank tracking</span>
+<span class="serp-header-label">google.com/search</span>
+</div>
+<div class="rank-shift">
+<div>
+<div class="rank-before">#47</div>
+</div>
+<span class="rank-arrow">→</span>
+<div>
+<div class="rank-after">#1</div>
+<div class="rank-after-label">Target keyword position</div>
+</div>
+</div>
+<div class="serp-mock">
+<div class="serp-mock-url"><span class="favicon">●</span>yourbusiness.com › official-site</div>
+<div class="serp-mock-title">YourBusiness — Ranked #1 in Search Results</div>
+<div class="serp-mock-desc">Optimized by Rank Overflow. Technical SEO, content architecture, and link
                 acquisition compounding since month one.</div>
-            </div>
-            <div class="serp-metrics">
-              <div class="serp-metric">
-                <div class="serp-metric-label">Organic Clicks</div>
-                <div class="serp-metric-val">12,480<span>↑48%</span></div>
-              </div>
-              <div class="serp-metric">
-                <div class="serp-metric-label">Average CTR</div>
-                <div class="serp-metric-val">4.2%<span>↑1.2%</span></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+</div>
+<div class="serp-metrics">
+<div class="serp-metric">
+<div class="serp-metric-label">Organic Clicks</div>
+<div class="serp-metric-val">12,480<span>↑48%</span></div>
+</div>
+<div class="serp-metric">
+<div class="serp-metric-label">Average CTR</div>
+<div class="serp-metric-val">4.2%<span>↑1.2%</span></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- TRUSTED BY -->
+<div class="trusted">
+<div class="trusted-inner">
+<span class="trusted-label">Trusted by brands in NL &amp; BE</span>
+<div class="trusted-logos">
 
-    <!-- TRUSTED BY -->
-    <div class="trusted">
-      <div class="trusted-inner">
-        <span class="trusted-label">Trusted by brands in NL & BE</span>
-        <div class="trusted-logos">
-          <span class="trusted-logo">BOLDPERFORMANCE.NL</span>
-          <span class="trusted-logo">GETSAVAGE.NL</span>
-          <span class="trusted-logo">QUALITYFIT.BE</span>
-        </div>
-      </div>
-    </div>
 
-    <!-- SERVICES -->
-    <section class="section">
-      <div class="container">
-        <div class="section-header">
-          <span class="tag">What We Do</span>
-          <h2>SEO That Actually Moves the Needle</h2>
-          <p>We don't sell keywords. We engineer growth systems that compound over time and deliver measurable ROI.</p>
-        </div>
-        <div class="services-grid">
-          <div class="service-card-premium fade-up">
-            <div class="service-icon">🔍</div>
-            <h3>Technical SEO</h3>
-            <p>Deep-dive audits, crawl optimization, Core Web Vitals, structured data — we fix the foundation first.</p>
-          </div>
-          <div class="service-card-premium fade-up">
-            <div class="service-icon">📝</div>
-            <h3>Content Strategy</h3>
-            <p>Topical authority mapping, content gap analysis, and search-intent-led copy that converts visitors.</p>
-          </div>
-          <div class="service-card-premium fade-up">
-            <div class="service-icon">🔗</div>
-            <h3>Link Acquisition</h3>
-            <p>White-hat link building from real, high-authority publishers that move your domain rating up.</p>
-          </div>
-          <div class="service-card-premium fade-up">
-            <div class="service-icon">🌍</div>
-            <h3>Local SEO</h3>
-            <p>Google Business, local citations, hyperlocal content — dominate your city's search results.</p>
-          </div>
-          <div class="service-card-premium fade-up">
-            <div class="service-icon">📊</div>
-            <h3>SEO Analytics</h3>
-            <p>Custom dashboards, attribution modeling, and monthly reporting with actionable insight — not vanity
+
+</div>
+</div>
+</div>
+<!-- SERVICES -->
+<section class="section">
+<div class="container">
+<div class="section-header">
+<span class="tag">What We Do</span>
+<h2>SEO That Actually Moves the Needle</h2>
+<p>We don't sell keywords. We engineer growth systems that compound over time and deliver measurable ROI.</p>
+</div>
+<div class="services-grid">
+<div class="service-card-premium fade-up">
+<div class="service-icon">🔍</div>
+<h3>Technical SEO</h3>
+<p>Deep-dive audits, crawl optimization, Core Web Vitals, structured data — we fix the foundation first.</p>
+</div>
+<div class="service-card-premium fade-up">
+<div class="service-icon">📝</div>
+<h3>Content Strategy</h3>
+<p>Topical authority mapping, content gap analysis, and search-intent-led copy that converts visitors.</p>
+</div>
+<div class="service-card-premium fade-up">
+<div class="service-icon">🔗</div>
+<h3>Link Acquisition</h3>
+<p>White-hat link building from real, high-authority publishers that move your domain rating up.</p>
+</div>
+<div class="service-card-premium fade-up">
+<div class="service-icon">🌍</div>
+<h3>Local SEO</h3>
+<p>Google Business, local citations, hyperlocal content — dominate your city's search results.</p>
+</div>
+<div class="service-card-premium fade-up">
+<div class="service-icon">📊</div>
+<h3>SEO Analytics</h3>
+<p>Custom dashboards, attribution modeling, and monthly reporting with actionable insight — not vanity
               metrics.</p>
-          </div>
-          <div class="service-card-premium fade-up">
-            <div class="service-icon">🛒</div>
-            <h3>E-commerce SEO</h3>
-            <p>Product page optimization, faceted navigation, schema markup, and category architecture that sells.</p>
-          </div>
-        </div>
-        <div class="text-center mt-2">
-          <a href="services.html" class="btn btn-outline">View All Services & Plans →</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- AI SERVICES TEASER -->
-    <section class="section" style="background:var(--bg-alt)">
-      <div class="container">
-        <div class="section-header">
-          <span class="tag">New</span>
-          <h2>We Also Build the AI Running Behind the Scenes</h2>
-          <p>Beyond SEO — AI voice agents, support chatbots, and automation workflows that handle the work your team doesn't have time for.</p>
-        </div>
-        <div class="services-grid">
-          <div class="service-card-premium fade-up">
-            <div class="service-icon">📞</div>
-            <h3>AI Voice Bot</h3>
-            <p>Answers every call, 24/7 — books appointments, qualifies leads, and hands off to a human when it matters.</p>
-          </div>
-          <div class="service-card-premium fade-up">
-            <div class="service-icon">💬</div>
-            <h3>AI Support Chatbots</h3>
-            <p>Subscription-aware bots that pull real account data and personalize every response by user tier.</p>
-          </div>
-          <div class="service-card-premium fade-up">
-            <div class="service-icon">🔀</div>
-            <h3>Workflow Automation</h3>
-            <p>Lead monitoring, content generation, funnel matchmaking — built with n8n, LLMs, and your existing tools.</p>
-          </div>
-        </div>
-        <div class="text-center mt-2">
-          <a href="ai-services.html" class="btn btn-outline">Explore AI Services →</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- WHY -->
-    <section class="section why">
-      <div class="container why-grid">
-        <div>
-          <span class="tag">Why Rank Overflow</span>
-          <h2>Most agencies report.<br>We deliver.</h2>
-          <div class="why-points">
-            <div class="why-point">
-              <div class="why-check"><svg viewBox="0 0 14 14" fill="none" stroke-width="2.5">
-                  <polyline points="2 7 6 11 12 3" />
-                </svg></div>
-              <div class="why-point-text">
-                <h4>ROI-First Mindset</h4>
-                <p>Every strategy we build ties back to revenue. Rankings without conversions are just vanity numbers.
+</div>
+<div class="service-card-premium fade-up">
+<div class="service-icon">🛒</div>
+<h3>E-commerce SEO</h3>
+<p>Product page optimization, faceted navigation, schema markup, and category architecture that sells.</p>
+</div>
+</div>
+<div class="text-center mt-2">
+<a class="btn btn-outline" href="services.html">View All Services &amp; Plans →</a>
+</div>
+</div>
+</section>
+<!-- WHY -->
+<section class="section why">
+<div class="container why-grid">
+<div>
+<span class="tag">Why Rank Overflow</span>
+<h2>Most agencies report.<br/>We deliver.</h2>
+<div class="why-points">
+<div class="why-point">
+<div class="why-check"><svg fill="none" stroke-width="2.5" viewbox="0 0 14 14">
+<polyline points="2 7 6 11 12 3"></polyline>
+</svg></div>
+<div class="why-point-text">
+<h4>ROI-First Mindset</h4>
+<p>Every strategy we build ties back to revenue. Rankings without conversions are just vanity numbers.
                 </p>
-              </div>
-            </div>
-            <div class="why-point">
-              <div class="why-check"><svg viewBox="0 0 14 14" fill="none" stroke-width="2.5">
-                  <polyline points="2 7 6 11 12 3" />
-                </svg></div>
-              <div class="why-point-text">
-                <h4>Transparent Reporting</h4>
-                <p>Real-time dashboard access, monthly strategy calls, full transparency — always.</p>
-              </div>
-            </div>
-            <div class="why-point">
-              <div class="why-check"><svg viewBox="0 0 14 14" fill="none" stroke-width="2.5">
-                  <polyline points="2 7 6 11 12 3" />
-                </svg></div>
-              <div class="why-point-text">
-                <h4>No Lock-In Contracts</h4>
-                <p>We earn your business every month. If you're not seeing results, you're free to walk.</p>
-              </div>
-            </div>
-            <div class="why-point">
-              <div class="why-check"><svg viewBox="0 0 14 14" fill="none" stroke-width="2.5">
-                  <polyline points="2 7 6 11 12 3" />
-                </svg></div>
-              <div class="why-point-text">
-                <h4>Dedicated SEO Strategists</h4>
-                <p>No junior account managers. A senior strategist owns your account from day one.</p>
-              </div>
-            </div>
-          </div>
-          <div style="margin-top:2.2rem"><a href="about.html" class="btn btn-primary">Meet Our Team →</a></div>
-        </div>
-        <div class="why-comparison">
-          <div class="why-comparison-header">Typical Client Performance Gains</div>
-          <table class="comparison-table">
-            <thead>
-              <tr>
-                <th>Metric Target</th>
-                <th>Before</th>
-                <th>With Rank Overflow</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="comp-metric-name">Mobile Page Speed Index</td>
-                <td class="comp-val-before">45/100</td>
-                <td class="comp-val-after">82/100</td>
-              </tr>
-              <tr>
-                <td class="comp-metric-name">Desktop Speed Performance</td>
-                <td class="comp-val-before">68/100</td>
-                <td class="comp-val-after">98/100</td>
-              </tr>
-              <tr>
-                <td class="comp-metric-name">Core Web Vitals Pass Rate</td>
-                <td class="comp-val-before">Failing</td>
-                <td class="comp-val-after">100% Passed</td>
-              </tr>
-              <tr>
-                <td class="comp-metric-name">Monthly GSC Impressions</td>
-                <td class="comp-val-before">1.2k</td>
-                <td class="comp-val-after">85.6k (↑70x)</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
-    <!-- PROCESS -->
-    <section class="section" style="background:var(--bg-alt)">
-      <div class="container">
-        <div class="section-header">
-          <span class="tag">How It Works</span>
-          <h2>From Zero to Ranking in 4 Steps</h2>
-        </div>
-        <div class="process-steps-timeline">
-          <div class="process-step-timeline">
-            <div class="step-num-bubble">01</div>
-            <h4>Free Score Audit</h4>
-            <p>We analyze your site's SEO health, technical issues, and competitive gaps in depth.</p>
-          </div>
-          <div class="process-step-timeline">
-            <div class="step-num-bubble">02</div>
-            <h4>Custom Roadmap</h4>
-            <p>A 90-day growth plan tailored to your industry, goals, and competitive landscape.</p>
-          </div>
-          <div class="process-step-timeline">
-            <div class="step-num-bubble">03</div>
-            <h4>Execute & Build</h4>
-            <p>Our team implements technical fixes, content, and link acquisition at scale.</p>
-          </div>
-          <div class="process-step-timeline">
-            <div class="step-num-bubble">04</div>
-            <h4>Measure & Grow</h4>
-            <p>Monthly reporting, iteration, and compounding growth that builds real business value.</p>
-          </div>
-        </div>
-        <div class="text-center" style="margin-top:3.5rem"><a href="score.html" class="btn btn-primary btn-lg">Start
+</div>
+</div>
+<div class="why-point">
+<div class="why-check"><svg fill="none" stroke-width="2.5" viewbox="0 0 14 14">
+<polyline points="2 7 6 11 12 3"></polyline>
+</svg></div>
+<div class="why-point-text">
+<h4>Transparent Reporting</h4>
+<p>Real-time dashboard access, monthly strategy calls, full transparency — always.</p>
+</div>
+</div>
+<div class="why-point">
+<div class="why-check"><svg fill="none" stroke-width="2.5" viewbox="0 0 14 14">
+<polyline points="2 7 6 11 12 3"></polyline>
+</svg></div>
+<div class="why-point-text">
+<h4>No Lock-In Contracts</h4>
+<p>We earn your business every month. If you're not seeing results, you're free to walk.</p>
+</div>
+</div>
+<div class="why-point">
+<div class="why-check"><svg fill="none" stroke-width="2.5" viewbox="0 0 14 14">
+<polyline points="2 7 6 11 12 3"></polyline>
+</svg></div>
+<div class="why-point-text">
+<h4>Dedicated SEO Strategists</h4>
+<p>No junior account managers. A senior strategist owns your account from day one.</p>
+</div>
+</div>
+</div>
+<div style="margin-top:2.2rem"><a class="btn btn-primary" href="about.html">Meet Our Team →</a></div>
+</div>
+<div class="why-comparison">
+<div class="why-comparison-header">Typical Client Performance Gains</div>
+<table class="comparison-table">
+<thead>
+<tr>
+<th>Metric Target</th>
+<th>Before</th>
+<th>With Rank Overflow</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="comp-metric-name">Mobile Page Speed Index</td>
+<td class="comp-val-before">45/100</td>
+<td class="comp-val-after">82/100</td>
+</tr>
+<tr>
+<td class="comp-metric-name">Desktop Speed Performance</td>
+<td class="comp-val-before">68/100</td>
+<td class="comp-val-after">98/100</td>
+</tr>
+<tr>
+<td class="comp-metric-name">Core Web Vitals Pass Rate</td>
+<td class="comp-val-before">Failing</td>
+<td class="comp-val-after">100% Passed</td>
+</tr>
+<tr>
+<td class="comp-metric-name">Monthly GSC Impressions</td>
+<td class="comp-val-before">1.2k</td>
+<td class="comp-val-after">85.6k (↑70x)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<!-- PROCESS -->
+<section class="section" style="background:var(--bg-alt)">
+<div class="container">
+<div class="section-header">
+<span class="tag">How It Works</span>
+<h2>From Zero to Ranking in 4 Steps</h2>
+</div>
+<div class="process-steps-timeline">
+<div class="process-step-timeline">
+<div class="step-num-bubble">01</div>
+<h4>Free Score Audit</h4>
+<p>We analyze your site's SEO health, technical issues, and competitive gaps in depth.</p>
+</div>
+<div class="process-step-timeline">
+<div class="step-num-bubble">02</div>
+<h4>Custom Roadmap</h4>
+<p>A 90-day growth plan tailored to your industry, goals, and competitive landscape.</p>
+</div>
+<div class="process-step-timeline">
+<div class="step-num-bubble">03</div>
+<h4>Execute &amp; Build</h4>
+<p>Our team implements technical fixes, content, and link acquisition at scale.</p>
+</div>
+<div class="process-step-timeline">
+<div class="step-num-bubble">04</div>
+<h4>Measure &amp; Grow</h4>
+<p>Monthly reporting, iteration, and compounding growth that builds real business value.</p>
+</div>
+</div>
+<div class="text-center" style="margin-top:3.5rem"><a class="btn btn-primary btn-lg" href="score.html">Start
             With a Free Score →</a></div>
-      </div>
-    </section>
-
-    <!-- TESTIMONIALS -->
-    <section class="section">
-      <div class="container">
-        <div class="section-header">
-          <span class="tag">Client Results</span>
-          <h2>Don't Take Our Word For It</h2>
-          <p>Real businesses. Real rankings. Real revenue.</p>
-        </div>
-        <div class="testimonials-grid">
-          <div class="testimonial-card-staggered">
-            <div class="testimonial-stars">★★★★★</div>
-            <p class="testimonial-text">"Rank Overflow took us from page 6 to position #1 for our main keyword in under
+</div>
+</section>
+<!-- TESTIMONIALS -->
+<section class="section">
+<div class="container">
+<div class="section-header">
+<span class="tag">Client Results</span>
+<h2>Don't Take Our Word For It</h2>
+<p>Real businesses. Real rankings. Real revenue.</p>
+</div>
+<div class="testimonials-grid">
+<div class="testimonial-card-staggered">
+<div class="testimonial-stars">★★★★★</div>
+<p class="testimonial-text">"Rank Overflow took us from page 6 to position #1 for our main keyword in under
               5 months. Our monthly leads tripled."</p>
-            <div class="testimonial-author">
-              <div class="author-avatar" style="background:var(--gold)">AK</div>
-              <div class="author-info"><strong>Ahmed K.</strong><span>CEO, Nova Tech Solutions</span></div>
-            </div>
-          </div>
-          <div class="testimonial-card-staggered">
-            <div class="testimonial-stars">★★★★★</div>
-            <p class="testimonial-text">"We saw a 280% increase in organic revenue in 6 months. Their content strategy
+<div class="testimonial-author">
+<div class="author-avatar" style="background:var(--gold)">AK</div>
+<div class="author-info"><strong>Ahmed K.</strong><span>CEO, Nova Tech Solutions</span></div>
+</div>
+</div>
+<div class="testimonial-card-staggered">
+<div class="testimonial-stars">★★★★★</div>
+<p class="testimonial-text">"We saw a 280% increase in organic revenue in 6 months. Their content strategy
               is data-driven and genuinely creative."</p>
-            <div class="testimonial-author">
-              <div class="author-avatar" style="background:var(--teal)">SR</div>
-              <div class="author-info"><strong>Sara R.</strong><span>Head of Marketing, Apex Retail</span></div>
-            </div>
-          </div>
-          <div class="testimonial-card-staggered">
-            <div class="testimonial-stars">★★★★★</div>
-            <p class="testimonial-text">"Transparent, accountable, and they actually deliver. The dashboard alone is
+<div class="testimonial-author">
+<div class="author-avatar" style="background:var(--teal)">SR</div>
+<div class="author-info"><strong>Sara R.</strong><span>Head of Marketing, Apex Retail</span></div>
+</div>
+</div>
+<div class="testimonial-card-staggered">
+<div class="testimonial-stars">★★★★★</div>
+<p class="testimonial-text">"Transparent, accountable, and they actually deliver. The dashboard alone is
               worth it — I know exactly what's happening at all times."</p>
-            <div class="testimonial-author">
-              <div class="author-avatar" style="background:#8ab4f8">MF</div>
-              <div class="author-info"><strong>Mohammed F.</strong><span>Founder, Orbita Co</span></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="section container">
-      <div class="cta-card-floating">
-        <h2>Ready to See Where You Stand?</h2>
-        <p>Get a free, expert-led Website Performance Score — SEO health, technical audit, and conversion analysis. No
+<div class="testimonial-author">
+<div class="author-avatar" style="background:#8ab4f8">MF</div>
+<div class="author-info"><strong>Mohammed F.</strong><span>Founder, Orbita Co</span></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA -->
+<section class="section container">
+<div class="cta-card-floating">
+<h2>Ready to See Where You Stand?</h2>
+<p>Get a free, expert-led Website Performance Score — SEO health, technical audit, and conversion analysis. No
           strings attached.</p>
-        <a href="score.html" class="btn btn-primary btn-lg">Get My Free Score Now →</a>
-      </div>
-    </section>
-
-  </main>
-
-  <footer>
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <div class="footer-logo">
-            <svg class="brand-mark" viewBox="0 0 70 90" width="26" height="32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <rect x="4" y="20" width="62" height="58" rx="14" fill="var(--bg)" stroke="var(--gold)" stroke-width="1.5"/>
-              <rect x="14" y="46" width="10" height="24" rx="2" fill="var(--teal)"/>
-              <rect x="30" y="36" width="10" height="34" rx="2" fill="var(--teal)"/>
-              <rect x="46" y="8" width="10" height="62" rx="2" fill="var(--gold)"/>
-              <circle cx="51" cy="8" r="4" fill="var(--gold)"/>
-            </svg>
-            <span class="brand-word"><span class="rk">Rank</span><span class="ov">Overflow</span></span>
-          </div>
-          <p class="footer-desc">Europe's results-driven SEO agency. We help businesses rank higher, grow faster, and
+<a class="btn btn-primary btn-lg" href="score.html">Get My Free Score Now →</a>
+</div>
+</section>
+</main>
+<footer>
+<div class="container">
+<div class="footer-grid">
+<div class="footer-brand">
+<div class="footer-logo">
+<svg aria-hidden="true" class="brand-mark" height="32" viewbox="0 0 70 90" width="26" xmlns="http://www.w3.org/2000/svg">
+<rect fill="var(--bg)" height="58" rx="14" stroke="var(--gold)" stroke-width="1.5" width="62" x="4" y="20"></rect>
+<rect fill="var(--teal)" height="24" rx="2" width="10" x="14" y="46"></rect>
+<rect fill="var(--teal)" height="34" rx="2" width="10" x="30" y="36"></rect>
+<rect fill="var(--gold)" height="62" rx="2" width="10" x="46" y="8"></rect>
+<circle cx="51" cy="8" fill="var(--gold)" r="4"></circle>
+</svg>
+<span class="brand-word"><span class="rk">Rank</span><span class="ov">Overflow</span></span>
+</div>
+<p class="footer-desc">Europe's results-driven SEO agency. We help businesses rank higher, grow faster, and
             win more customers through organic search.</p>
-        </div>
-        <div class="footer-col">
-          <h5>Services</h5>
-          <ul>
-            <li><a href="services.html">Technical SEO</a></li>
-            <li><a href="services.html">Content Strategy</a></li>
-            <li><a href="services.html">Link Building</a></li>
-            <li><a href="services.html">Local SEO</a></li>
-            <li><a href="services.html">E-commerce SEO</a></li>
-            <li><a href="ai-services.html">AI Automation</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h5>Company</h5>
-          <ul>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="casestudies.html">Case Studies</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="score.html">Get My Score</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h5>Contact</h5>
-          <ul>
-            <li><a href="mailto:hello@rankoverflow.com">hello@rankoverflow.com</a></li>
-            <li><a href="tel:+923001234567">+92 300 1234567</a></li>
-            <li><a href="contact.html">Blue Area, Islamabad</a></li>
-          </ul>
-          <div style="margin-top:1.5rem"><a href="score.html" class="btn btn-primary">Get Free Score</a></div>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>© 2025 Rank Overflow — all rights reserved</p>
-        <div class="footer-socials">
-          <a href="#" class="footer-social">in</a><a href="#" class="footer-social">𝕏</a>
-          <a href="#" class="footer-social">f</a><a href="#" class="footer-social">▶</a>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <script>
+</div>
+<div class="footer-col">
+<h5>Services</h5>
+<ul>
+<li><a href="services.html">Technical SEO</a></li>
+<li><a href="services.html">Content Strategy</a></li>
+<li><a href="services.html">Link Building</a></li>
+<li><a href="services.html">Local SEO</a></li>
+<li><a href="services.html">E-commerce SEO</a></li>
+<li><a href="ai-services.html">AI Automation</a></li>
+</ul>
+</div>
+<div class="footer-col">
+<h5>Company</h5>
+<ul>
+<li><a href="about.html">About Us</a></li>
+<li><a href="casestudies.html">Case Studies</a></li>
+<li><a href="contact.html">Contact</a></li>
+<li><a href="score.html">Get My Score</a></li>
+</ul>
+</div>
+<div class="footer-col">
+<h5>Contact</h5>
+<ul>
+<li><a href="mailto:rankoverflow.io@gmail.com">rankoverflow.io@gmail.com</a></li>
+<li></li>
+<li><a href="contact.html">Blue Area, Islamabad</a></li>
+</ul>
+<div style="margin-top:1.5rem"><a class="btn btn-primary" href="score.html">Get Free Score</a></div>
+</div>
+</div>
+<div class="footer-bottom">
+<p>© 2025 Rank Overflow — all rights reserved</p>
+<div class="footer-socials">
+<a class="footer-social" href="#">in</a><a class="footer-social" href="#">𝕏</a>
+<a class="footer-social" href="#">f</a><a class="footer-social" href="#">▶</a>
+</div>
+</div>
+</div>
+</footer>
+<script>
     function toggleTheme() {
   const root = document.documentElement;
   const isDark = root.getAttribute('data-theme') === 'dark';
@@ -1798,5 +1731,4 @@ function toggleMenu() {
     }
   </script>
 </body>
-
 </html>
