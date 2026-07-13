@@ -301,6 +301,10 @@ footer { background: var(--bg-alt); border-top: 1px solid var(--border); padding
             <input type="email" id="cfEmail" placeholder="ahmed@company.com">
           </div>
           <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" id="cfPhone" placeholder="+92 300 1234567">
+          </div>
+          <div class="form-group">
             <label>Website URL</label>
             <input type="url" id="cfWebsiteUrl" placeholder="https://yourwebsite.com">
           </div>
@@ -437,6 +441,7 @@ async function submitContact() {
   const lastName = document.getElementById('cfLastName').value.trim();
   const email = document.getElementById('cfEmail').value.trim();
   const websiteUrl = document.getElementById('cfWebsiteUrl').value.trim();
+  const phone = document.getElementById('cfPhone').value.trim();
   const interest = document.getElementById('cfInterest').value;
   const budget = document.getElementById('cfBudget').value;
   const message = document.getElementById('cfMessage').value.trim();
@@ -469,6 +474,7 @@ async function submitContact() {
         source: 'contact_form',
         name: `${firstName} ${lastName}`.trim(),
         email: email,
+        phone: phone || null,
         message: message,
         website: honeypot,
         metadata: { website_url: websiteUrl || null, interest: interest || null, budget: budget || null }
