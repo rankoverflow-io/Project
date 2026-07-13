@@ -210,7 +210,6 @@ footer { background: var(--bg-alt); border-top: 1px solid var(--border); padding
   </style>
 <meta name="theme-color" content="#ffffff">
 <meta name="color-scheme" content="light">
-<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 <body>
 
@@ -373,7 +372,6 @@ footer { background: var(--bg-alt); border-top: 1px solid var(--border); padding
         </div>
         <div id="scoreError" style="display:none;color:var(--red);font-size:.85rem;margin-bottom:1rem;"></div>
 
-        <div class="cf-turnstile" data-sitekey="0x4AAAAAAD00Mzml4-rhbIy3" data-callback="onTurnstileVerified" data-theme="auto" style="margin-bottom:1rem;"></div>
         <button class="btn btn-primary btn-lg" id="scoreSubmitBtn" style="width:100%;justify-content:center;font-size:1.02rem;" onclick="submitScoreForm()">
           🎯 Send Me My Free Score
         </button>
@@ -512,8 +510,7 @@ function updateScoreStep() {
 
 const SUBMIT_LEAD_URL = 'https://vqdlvxitepnkcxbpynuf.supabase.co/functions/v1/submit-lead';
 
-let scoreTurnstileToken = null;
-function onTurnstileVerified(token) { scoreTurnstileToken = token; }
+const scorePageLoadedAt = Date.now();
 
 async function submitScoreForm() {
   const btn = document.getElementById('scoreSubmitBtn');
@@ -546,11 +543,6 @@ async function submitScoreForm() {
     errorBox.style.display = 'block';
     return;
   }
-  if (!scoreTurnstileToken) {
-    errorBox.textContent = 'Please wait a moment for the security check to finish, then try again.';
-    errorBox.style.display = 'block';
-    return;
-  }
 
   const originalBtnText = btn.textContent;
   btn.disabled = true;
@@ -569,7 +561,7 @@ async function submitScoreForm() {
         company: company || null,
         message: notes,
         website: honeypot,
-        turnstileToken: scoreTurnstileToken,
+        formElapsedMs: Date.now() - scorePageLoadedAt,
         metadata: { website_url: url, industry, challenge: challenge || null, traffic: traffic || null }
       })
     });
