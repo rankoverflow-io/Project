@@ -11,7 +11,7 @@ export default defineConfig({
         score: resolve(__dirname, 'score.html'),
         casestudies: resolve(__dirname, 'casestudies.html'),
         aiServices: resolve(__dirname, 'ai-services.html'),
-        notFound:  notFound: resolve(__dirname, '404.html')
+        notFound: resolve(__dirname, '404.html')
       }
     }
   }
