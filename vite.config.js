@@ -10,7 +10,8 @@ export default defineConfig({
         contact: resolve(__dirname, 'contact.html'),
         score: resolve(__dirname, 'score.html'),
         casestudies: resolve(__dirname, 'casestudies.html'),
-        aiServices: resolve(__dirname, 'ai-services.html')
+        aiServices: resolve(__dirname, 'ai-services.html'),
+        notFound:  notFound: resolve(__dirname, '404.html')
       }
     }
   }
