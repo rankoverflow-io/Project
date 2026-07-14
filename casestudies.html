@@ -128,9 +128,6 @@ footer { background: var(--bg-alt); border-top: 1px solid var(--border); padding
 .footer-col ul li a:hover { color: var(--gold); }
 .footer-bottom { border-top: 1px solid var(--border); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
 .footer-bottom p { font-size: .8rem; color: var(--text-faint); font-family: var(--font-mono); }
-.footer-socials { display: flex; gap: .8rem; }
-.footer-social { width: 34px; height: 34px; border-radius: 50%; background: var(--panel); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; color: var(--text-dim); text-decoration: none; font-size: .8rem; transition: .2s; }
-.footer-social:hover { border-color: var(--gold); color: var(--gold); }
 
 .fade-up { opacity: 0; transform: translateY(24px); transition: opacity .6s, transform .6s; }
 .fade-up.visible { opacity: 1; transform: none; }
@@ -203,6 +200,22 @@ footer { background: var(--bg-alt); border-top: 1px solid var(--border); padding
     html[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
     @media (max-width: 860px) {
       .theme-toggle { order: 0; margin-right: 10px; }
+    }
+  
+    .wa-float-btn { position: fixed; bottom: 24px; right: 24px; width: 58px; height: 58px; border-radius: 50%; background: #25D366; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 20px rgba(0,0,0,0.25); cursor: pointer; z-index: 2000; border: none; transition: transform .2s; }
+    .wa-float-btn:hover { transform: scale(1.06); }
+    .wa-float-btn svg { width: 30px; height: 30px; }
+    .wa-popup { position: fixed; bottom: 96px; right: 24px; width: 280px; background: var(--panel); border: 1px solid var(--border); border-radius: 16px; box-shadow: 0 12px 32px rgba(0,0,0,0.18); padding: 1.3rem; z-index: 2000; display: none; flex-direction: column; gap: .8rem; }
+    .wa-popup.open { display: flex; }
+    .wa-popup-header { display:flex; justify-content:space-between; align-items:center; }
+    .wa-popup-header h4 { font-family: var(--font-display); font-size: 1rem; color: var(--text); margin:0; }
+    .wa-popup-close { cursor:pointer; background:none; border:none; color: var(--text-faint); font-size:1.2rem; line-height:1; padding:0; }
+    .wa-popup p { font-size: .85rem; color: var(--text-dim); margin:0; }
+    .wa-popup-btn { display:flex; align-items:center; justify-content:center; gap:.5rem; background:#25D366; color:#fff; text-decoration:none; padding:.7rem 1rem; border-radius:10px; font-weight:600; font-size:.88rem; }
+    .wa-popup-btn:hover { background:#20bd5a; }
+    @media (max-width: 480px) {
+      .wa-popup { width: calc(100vw - 32px); right:16px; }
+      .wa-float-btn { right:16px; bottom:16px; }
     }
   </style>
 <meta name="theme-color" content="#ffffff">
@@ -394,11 +407,7 @@ footer { background: var(--bg-alt); border-top: 1px solid var(--border); padding
       </div>
       <div class="footer-bottom">
         <p>© 2025 Rank Overflow — all rights reserved</p>
-        <div class="footer-socials">
-          <a href="#" class="footer-social">in</a><a href="#" class="footer-social">𝕏</a>
-          <a href="#" class="footer-social">f</a><a href="#" class="footer-social">▶</a>
-        </div>
-      </div>
+</div>
     </div>
   </footer>
 
@@ -439,5 +448,26 @@ function initFadeUps() {
 }
 document.addEventListener('DOMContentLoaded', () => { initFadeUps(); });
   </script>
+
+<button class="wa-float-btn" id="waFloatBtn" onclick="toggleWaPopup()" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 32 32" fill="#ffffff" xmlns="http://www.w3.org/2000/svg"><path d="M16.004 3C9.376 3 4 8.373 4 15c0 2.29.638 4.428 1.744 6.25L4 29l7.938-1.703A11.93 11.93 0 0 0 16.004 27C22.63 27 28 21.627 28 15S22.63 3 16.004 3zm0 21.7c-1.98 0-3.82-.55-5.4-1.5l-.386-.23-4.71 1.01 1.01-4.59-.25-.4A9.63 9.63 0 0 1 6.3 15c0-5.35 4.36-9.7 9.704-9.7 5.345 0 9.7 4.35 9.7 9.7 0 5.35-4.355 9.7-9.7 9.7zm5.32-7.26c-.29-.145-1.716-.845-1.982-.94-.266-.096-.46-.145-.654.145-.194.29-.75.94-.92 1.135-.17.194-.34.218-.63.073-.29-.145-1.224-.45-2.33-1.435-.862-.767-1.444-1.715-1.614-2.005-.17-.29-.018-.446.127-.59.13-.13.29-.34.435-.51.145-.17.194-.29.29-.484.096-.194.048-.363-.024-.508-.073-.145-.654-1.575-.897-2.158-.236-.567-.477-.49-.654-.5-.17-.008-.363-.01-.557-.01-.194 0-.508.073-.774.363-.266.29-1.017.994-1.017 2.424 0 1.43 1.041 2.812 1.186 3.006.145.194 2.05 3.13 4.968 4.39.694.3 1.235.478 1.657.612.696.221 1.33.19 1.83.115.558-.083 1.716-.702 1.958-1.38.242-.677.242-1.258.17-1.38-.073-.12-.266-.194-.557-.34z"/></svg>
+</button>
+
+<div class="wa-popup" id="waPopup">
+  <div class="wa-popup-header">
+    <h4>Chat with us</h4>
+    <button class="wa-popup-close" onclick="toggleWaPopup()" aria-label="Close">×</button>
+  </div>
+  <p>Got a quick question? Message us directly and we'll get back to you fast.</p>
+  <a class="wa-popup-btn" href="https://wa.me/92181982989?text=Hi%20Rank%20Overflow,%20I%20have%20a%20question." target="_blank" rel="noopener noreferrer">
+    Start WhatsApp Chat
+  </a>
+</div>
+
+<script>
+function toggleWaPopup() {
+  document.getElementById('waPopup').classList.toggle('open');
+}
+</script>
 </body>
 </html>
