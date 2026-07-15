@@ -157,7 +157,7 @@ footer { background: var(--bg-alt); border-top: 1px solid var(--border); padding
 .score-hero .tag { justify-content: center; }
 
 .score-includes { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.2rem; margin: 3rem 0; }
-.score-include-item { background: var(--panel); border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem; text-align: center; }
+.score-include-item { background: var(--panel); border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem; text-align: left; }
 .score-include-icon { font-size: 1.7rem; margin-bottom: .8rem; }
 .score-include-item h4 { font-family: var(--font-display); color: var(--text); font-size: .95rem; font-weight: 600; margin-bottom: .4rem; }
 .score-include-item p { font-size: .8rem; color: var(--text-faint); }
@@ -195,9 +195,9 @@ footer { background: var(--bg-alt); border-top: 1px solid var(--border); padding
 .form-success p { color: var(--text-dim); font-size: .9rem; }
 .form-success strong { color: var(--text); }
 
-.score-perks-grid { max-width: 720px; margin: 3rem auto 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+.score-perks-grid { margin: 3rem 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.2rem; }
 .score-perk-card { background: var(--panel); border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem; }
-.score-perk-card .icon { font-size: 1.4rem; margin-bottom: .6rem; }
+.score-perk-card .icon { font-size: 1.7rem; margin-bottom: .8rem; }
 .score-perk-card h4 { font-family: var(--font-display); font-weight: 600; margin-bottom: .4rem; font-size: 1rem; color: var(--text); }
 .score-perk-card p { font-size: .85rem; color: var(--text-dim); }
 
@@ -329,11 +329,11 @@ footer { background: var(--bg-alt); border-top: 1px solid var(--border); padding
         <div class="form-row">
           <div class="form-group">
             <label>Your Full Name *</label>
-            <input type="text" id="scoreName" placeholder="Ethan Brooks">
+            <input type="text" id="scoreName" placeholder="Ahmed Khan">
           </div>
           <div class="form-group">
             <label>Business Email *</label>
-            <input type="email" id="scoreEmail" placeholder="hello@company.com">
+            <input type="email" id="scoreEmail" placeholder="ahmed@company.com">
           </div>
         </div>
         <div class="form-row">
@@ -343,7 +343,7 @@ footer { background: var(--bg-alt); border-top: 1px solid var(--border); padding
           </div>
           <div class="form-group">
             <label>Phone Number</label>
-            <input type="tel" id="scorePhone" placeholder="Your Phone Number">
+            <input type="tel" id="scorePhone" placeholder="+92 300 1234567">
           </div>
         </div>
         <div class="form-group">
